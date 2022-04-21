@@ -302,4 +302,163 @@ PairRdds a unir no tienen las mismas claves.
 
 ##### En mi repositorio poder ver un ejemplo de join
 
+## SparkSQL
+
+Es una interfaz pensada para trabajar con datos estructurados (con schema) y
+semiestructurados.
+
+Provee tres capacidades básicas:
+
+1. Cargar datos estructurados de diversos tipos: JSON, Hive, Parquet,
+etc..
+
+2. Procesa consultas relacionales sobre esos datos desde dentro de
+Spark y desde aplicaciones externas que tengan conectores con
+Spark a través de (JDBC/ODBC) (Ej: Tableau)
+
+3. Usado desde dentro de un programa Spark, provee integración con
+java/python/scala e incluye la habilidad de hacer Joins con RDDs y
+tablas entre otras cosas, de forma que facilita la construcción
+completa de la aplicación.
+
+### ¿Por qué utilizar SparkSQL?
+
+La idea fundamental es que, al trabajar con datos estructurados, se pueden
+optimizar las consultas. Si trabajamos de la manera tradicional, Spark no
+conoce la estructura de los datos, por lo que no es posible optimizar
+
+### Tablas
+
+- Compuestas de filas y columnas.
+- Típicamente representan una colección de objetos de un
+tipo (empleados, productos..)
+- Atributo= columna
+- Row= fila, registro, tupla
+- Relación= tabla
+
+### DataFrame
+
+Un **DataFrame** es una abstracción que representa el equivalente a una tabla
+
+Cada vez que nos referimos a un DataFrame, podemos pensar en tablas
+
+Por lo tanto, los DataFrame son RDDs de registros distribuidos con esquema
+conocido
+
+
+### SparkSession
+
+Para empezar a usar sparkSQL necesitamos un SparkSession, que es
+básicamente un SparkContext para SparkSQL
+
+Para ello, necesitamos ejecutar
+
+**import org.apache.spark.sql.SparkSession**
+
+
+### Creacion de DataFrames
+
+Se pueden crear de dos maneras
+
+- Desde un RDD
+  - Infiriendo un esquema
+  - Creando un esquema explicito
+- Leyendo datos desde un origen específico con esquema propio
+  - Típicamente datos semi-estructurados o estructurados como Hive, Json, XML…
+
+Los DataFrames aprovechan la potencia de las operaciones relacionales
+
+Esto ayuda al optimizador de Spark a comprender qué es lo que queremos
+hacer y variar un poco el orden en que se ejecutan las partes de la consulta
+transparentemente al usuario. Por ejemplo, filtrar antes de un join.
+
+La API de DataFrame tiene métodos similares a los de SQL
+
+- SELECT
+- WHERE
+- LIMIT
+- ORDER BY
+- GROUP BY
+- JOIN
+
+## Spark Streaming
+
+Spark Streaming no funciona totalmente en tiempo real. Simula el tiempo real
+diviendo los datos que llegan en tiempo real en diferentes RDD's. De forma que
+mezclamos la programación en lotes que utiliza Spark (BATCH) con la obtención
+de datos en tiempo real.
+
+Así como en Spark tenemos los RDDs, en Spark Streaming tenemos los DStreams
+(discretized streams). Un DStream se compone de RDDs.
+
+**Un DStream es una secuencia de datos que llegan en un periodo de tiempo**
+
+**Un DSTREAM se compone de RDD's. Cada RDD representa los datos
+recibidos durante un determinado periodo de tiempo (Dicho periodo se
+especificará en la declaración del DSTREAM**
+
+### Línea de funcionamiento
+
+Primero se crea el StreamingContext, que es como el SparkContext, pero indicándole
+la duración de cada proceso (batch)
+
+Después se van creando los DStream a partir del fichero de origen aplicando la
+configuración indicada en el StreamingContext
+
+Posteriormente se ejecutan las operaciones sobre el Dstream, que se realizarán sobre
+los RDDs agrupados en cada Dstream
+
+Para comenzar el proceso se ejecuta la orden start()
+
+Se espera a que se hayan procesado todos los Dstream con awaitTermination() 
+
+### Operaciones Spark Streaming
+
+Transformations, que generan otro Dstream de uno existente
+
+Output Operations, que escriben datos a sistemas externos. Similares a las
+acciones en RDDs
+
+- print(), saveAsTextFiles(), saveAsObjectFiles()
+- foreachRDD(function, time) - ejecuta una función en cada RDD del DStream
+
+### Transformaciones Spark Streaming
+
+Hay 2 tipos de transformaciones de RDDs que se pueden usar con
+Dstreams:
+
+- Transformaciones sin estado ("stateless"): donde el procesamiento de cada
+lote (BATCH) o RDD no depende de los anteriores. Las operaciones que
+podemos realizar son las que llevamos usando durante el curso.
+
+- Transformaciones con estado ("stateful"): donde el procesamiento de cada
+BATCH o RDD SI depende de los anteriores. Veremos ejemplos de estas
+transformaciones a lo largo de esta presentación
+
+### Operaciones salida del DStream
+
+Salida a consola
+
+  - print - imprime los primeros 10 elementos de cada RDD
+  
+Salida a fichero
+
+  - saveAsTextFiles - guarda los datos como texto
+  - saveAsObjectFiles - guarda ficheros con objetos serializados
+
+
+Otras funciones
+
+  - foreachRDD(function, time) - ejecuta una función en cada RDD del DStream
+
+### CheckPointing
+
+Los puntos de control (Checkpointing) son los mecanismos que tienen que
+ser utilizados para conseguir tolerancia a fallos en Spark Streaming.
+
+Permiten a Spark guardar datos, periódicamente, sobre la aplicación en un
+sistema de almacenamiento (HDFS, Amazon S3...) para usar en caso de
+recuperación
+
+
 
