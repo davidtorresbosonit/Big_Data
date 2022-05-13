@@ -1,0 +1,1 @@
+La palabra LOCAL en el comando LOAD DATA, se utiliza para referirse a que el archivo que se a cargar está en local y no en HDFS
