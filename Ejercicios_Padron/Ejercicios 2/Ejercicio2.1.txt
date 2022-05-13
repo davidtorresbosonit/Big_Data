@@ -1,0 +1,1 @@
+Un CTAS es una consula para crear tablas a partir de otras tablas, sería "CREATE TABLE AS SELECT"
