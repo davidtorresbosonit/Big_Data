@@ -1,0 +1,1 @@
+Pasa exactamente lo mismo, se borra el fichero al volcarlo en la tabla y si borramos la tabla los datos desaparecen.
