@@ -1,0 +1,2 @@
+Al ejecutar ambas consultas, una con padron_particionado y otra data padron_parquet, la de padron_parquet no ha mostrado resultados y la de padron_particionado si, por lo que puedo
+deducir que es debido al particioned de la tabla padron_particionado
