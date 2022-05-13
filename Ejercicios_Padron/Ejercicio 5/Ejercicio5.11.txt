@@ -1,0 +1,2 @@
+Al hacer ejercicio he podido ver que siempre que hagamos un load data el archivo se vuelva y desaparece de local lo que no es bueno ya que si se borra la tabla donde se han volcado los datos, se pierden todos ellos.
+Todo lo contrario que al hacer el location ya que desde el location puedes ver todos los datos que esten en esa ruta sin tener que haberlos importado
