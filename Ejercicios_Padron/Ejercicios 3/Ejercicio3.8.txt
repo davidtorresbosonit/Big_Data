@@ -1,0 +1,2 @@
+Al hacer la consulta tanto en Hive como en Impala, he podido ver como en Hive la consulta tarda bastante más en ejecutarse y mostrarse que en Impala.
+También he podido ver como en Hive sin ponerle Order By te ordena, en cambio, en Impala sin ponerle el Order By no lo hace.
