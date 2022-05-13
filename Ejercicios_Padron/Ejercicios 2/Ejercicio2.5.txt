@@ -1,0 +1,15 @@
+Formato: Parquet
+
+El formato Parquet es un formato open-source de almacenamiento en columnas para Hadoop.
+
+Fue creado para poder disponer de un formato libre de compresión y codificación eficiente.
+
+El formato de Parquet está compuesto por tres piezas:
+
+	Row group: es un conjunto de filas en formato columnar, con un tamaño entre 50Mb a 1Gb.
+	Column chunk: son los datos de una columna en un grupo. Se puede leer de manera independiente para mejorar las lecturas.
+	Page: Es donde finalmente se almacenan los datos debe ser lo suficiente grande para que la compresión sea eficiente.
+	
+Ventajas
+
+La principal ventaja es que en este formato, los valores de cada columna se almacenan físicamente en posiciones de contiguas, lo que consigue que la compresión de los datos sea más eficiente al ser los datos contiguos similares.
