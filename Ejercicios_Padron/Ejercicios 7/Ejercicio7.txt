@@ -1,0 +1,33 @@
+spark.sql("""CREATE TABLE temporary_padron_txt(
+COD_DISTRITO INT,
+DESC_DISTRITO VARCHAR(25),
+COD_DIST_BARRIO INT,
+DESC_BARRIO VARCHAR(25),
+COD_BARRIO INT,
+COD_DIST_SECCION INT,
+COD_SECCION INT,
+COD_EDAD_INT INT,
+EspanolesHombres INT,
+EspanolesMujeres INT,
+ExtranjerosHombres INT,
+ExtranjerosMujeres INT)
+ROW FORMAT SERDE "org.apache.hadoop.hive.serde2.OpenCSVSerde"
+with serdeproperties("separatorChar" = "\;","quoteChar" = '"')
+TBLPROPERTIES("skip.header.line.count"="1");""")
+
+
+spark.sql("""CREATE TABLE padron_txt(COD_DISTRITO INT,DESC_DISTRITO STRING,COD_DIST_BARRIO INT,DESC_BARRIO STRING,COD_BARRIO INT,COD_DIST_SECCION INT,COD_SECCION INT,COD_EDAD_INT INT,EspanolesHombres INT,EspanolesMujeres INT,ExtranjerosHombres INT,ExtranjerosMujeres INT)ROW FORMAT DELIMITED FIELDS TERMINATED BY '\073'STORED AS TEXTFILE;""")
+
+spark.sql("""LOAD DATA LOCAL INPATH "C:\\Users\\david.torres\\Desktop\\Archivos_Cloudera\\Rango_Edades_Seccion_202204.csv" INTO TABLE padron_txt_9""")
+
+spark.sql("""CREATE TABLE padron_txt_2 as select trim(COD_DISTRITO) as COD_DISTRITO,trim(DESC_DISTRITO)as DESC_DISTRITO,trim(COD_DIST_BARRIO) as COD_DIST_BARRIO,trim(DESC_BARRIO) as DESC_BARRIO,trim(COD_BARRIO) as COD_BARRIO,trim(COD_DIST_SECCION) as COD_DIST_SECCION,trim(COD_SECCION) as COD_SECCION,trim(EspanolesHombres) as EspanolesHombres,trim(EspanolesMujeres) as EspanolesMujeres,trim(ExtranjerosHombres) as ExtranjerosHombres,trim(ExtranjerosMujeres) as ExtranjerosMujeres from padron_txt""")
+
+val spark = SparkSession.builder().appName("Spark Hive Example").config("spark.sql.warehouse.dir", "C:\\Users\\david.torres\\Documents\\PADRON6").enableHiveSupport().getOrCreate()
+
+
+spark.sql("""create table padron_txt_9
+(COD_DISTRITO STRING, DESC_DISTRITO STRING, COD_DIST_BARRIO STRING, DESC_BARRIO STRING,COD_BARRIO STRING, COD_DIST_SECCION STRING, COD_SECCION STRING, COD_EDAD_INT STRING, EspanolesHombres STRING, EspanolesMujeres STRING, ExtranjerosHombres STRING,ExtranjerosMujeres STRING)
+ROW FORMAT SERDE 'org.apache.hadoop.hive.serde2.RegexSerDe'
+WITH SERDEPROPERTIES ('input.regex'='\\"(\\w*)\\s*\\"\\;*\\"(\\w*)\\s*\\"\\;*\\"(\\w*)\\s*\\"\\;*\\"(\\w*)\\s*\\"\\;*\\"(\\w*)\\s*\\"\\;*\\"(\\w*)\\s*\\"\\;*\\"(\\w*)\\s*\\"\\;*\\"(\\w*)\\s*\\"\\;*\\"(\\w*)\\s*\\"\\;*\\"(\\w*)\\s*\\"\\;*\\"(\\w*)\\s*\\"\\;*\\"(\\w*)\\s*\\"')
+STORED AS TEXTFILE
+TBLPROPERTIES('skip.header.line.count'='1');""")
