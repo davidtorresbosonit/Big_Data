@@ -1,0 +1,8 @@
+Estas son algunas características que Hive puede hacer pero Impala no:
+	Ficheros con tipos de datos a medida
+	El tipo de datos DATE◦Funciones XML y JSON
+	Algunas funciones de agregación como: “covar_pop, covar_samp, corr, percentile, percentile_approx, histogram_numeric, collect_set”
+	Sampling(que es el ejecutar queries sobre un subset de una tabla en lugar de sobre toda la tabla)
+	Vistas laterales (sobre una columna de una tabla, fila a fila, se le aplica una función (que crea un resultado en forma de vista en ejecución) y sobre ese resultado se aplica otra función, que es lo que se muestra.
+	Multilplescláusulas DISTINCT por query
+	UDFs(soportadas a partir de impala 1.2)
