@@ -1,0 +1,1 @@
+Basicamente he podido ver como al pesar más la tabla padron_txt_2, hay un tiempo de espera mayor en la tabla padron_txt_2 que en la tabla padron_parquet
