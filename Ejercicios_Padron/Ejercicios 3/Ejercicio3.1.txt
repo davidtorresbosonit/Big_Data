@@ -1,0 +1,2 @@
+Apache Impala es una herramienta escalable de procesamiento MPP (Massively Parallel Processing).
+Tiene licencia open source. Fue desarrollada inicialmente por Cloudera y más tarde incluida en la Apache Software Foundation. Está incluida en las distribuciones de Cloudera.
