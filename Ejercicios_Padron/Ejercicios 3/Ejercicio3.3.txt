@@ -1,0 +1,2 @@
+La instrucción INVALIDATE METADATA marca los metadatos de una o todas las tablas como obsoletas.
+La próxima vez que el servicio de Impala realice una consulta en una tabla cuyos metadatos estén invalidados, Impala recargará los metadatos asociados antes de continuar con la consulta.
