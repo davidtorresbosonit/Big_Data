@@ -1,0 +1,2 @@
+Al hacer la consultar entre impala y hive podemos ver la gran diferencia, el tiempo que tarda hive en realizar la consulta. A la hora de hacer las consultas con la tabla padron_txt_2
+y padron_particionado podemos ver como tarda un poquito menos en realizar la consulta padron_txt_2. Y la tabla padron_parquet no nos devuelve resultados
