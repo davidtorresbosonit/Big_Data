@@ -1,0 +1,1 @@
+Basicamente he podido ver como al igual que en Hive, hay un tiempo de espera mayor en la tabla padron_txt_2
