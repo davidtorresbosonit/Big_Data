@@ -1,0 +1,1 @@
+El archivo al ser volcado en la tabla se ha borrado, por tanto si borramos la tabla se pierden los datos
