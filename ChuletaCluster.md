@@ -25,3 +25,8 @@ lo que pasaba es que no tenía suficientes permisos, así que ha bastado un chmo
 ## SPARK
 Tras pasar al módulo de spark, volver poner los archivos xml modificados, core-site y hdfs-site a como estaban.
 Instalar python3 si da fallo 
+
+A la hora de usar spark standalone, si te da problemas el puerto, como que te pide usuario y contraseña, asignar otro puerto
+start-master.sh --webui-port 8081
+
+
